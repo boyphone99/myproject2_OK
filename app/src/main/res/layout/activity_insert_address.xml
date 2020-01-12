@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".InsertAddressActivity">
+
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@android:color/white"
+        android:hint="@string/name"
+        android:inputType="textPersonName"
+        android:padding="10dp" />
+
+    <EditText
+        android:id="@+id/etLast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@android:color/white"
+        android:hint="@string/last"
+        android:inputType="textPersonName"
+        android:padding="10dp" />
+
+    <EditText
+        android:id="@+id/etAge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@android:color/white"
+        android:hint="@string/age"
+        android:inputType="textPersonName"
+        android:padding="10dp" />
+
+    <Button
+        android:id="@+id/butSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/save" />
+
+    <TextView
+        android:id="@+id/user_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="" />
+
+</LinearLayout>

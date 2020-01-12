@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="edtextMargin">5dp</dimen>
+    <dimen name="textMargin">5dp</dimen>
+    <dimen name="buttonMargin">5dp</dimen>
+</resources>
