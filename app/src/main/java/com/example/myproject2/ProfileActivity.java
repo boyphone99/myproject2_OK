@@ -17,11 +17,11 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         session = new SessionHandler(getApplicationContext());
         User user = session.getUserDetails();
-        TextView welcomeText = findViewById(R.id.welcomeText1);
+        TextView welcomeText = findViewById(R.id.tvusername);
 
-        welcomeText.setText("Welcome "+user.getFullName()+", your session will expire on "+user.getSessionExpiryDate());
+        welcomeText.setText("Welcome "+user.getUsername()+", your session will expire on "+user.getSessionExpiryDate());
 
-        Button logoutBtn = findViewById(R.id.btnLogout1);
+        Button logoutBtn = findViewById(R.id.buttonlogout);
 
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override

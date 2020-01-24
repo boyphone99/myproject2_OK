@@ -19,7 +19,7 @@ public class DashboardActivity extends AppCompatActivity {
         User user = session.getUserDetails();
         TextView welcomeText = findViewById(R.id.welcomeText);
 
-        welcomeText.setText("Welcome "+user.getFullName()+", your session will expire on "+user.getSessionExpiryDate());
+        welcomeText.setText("Welcome "+user.getUsername()+", your session will expire on "+user.getSessionExpiryDate());
 
         Button logoutBtn = findViewById(R.id.btnLogout);
 
@@ -60,6 +60,16 @@ public class DashboardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(DashboardActivity.this, MapsActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
+        Button butHome = findViewById(R.id.buthome);
+        butHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(DashboardActivity.this, HomeActivity.class);
                 startActivity(i);
                 finish();
             }

@@ -21,20 +21,16 @@ import org.json.JSONObject;
 public class RegisterActivity extends AppCompatActivity {
     private static final String KEY_STATUS = "status";
     private static final String KEY_MESSAGE = "message";
-    private static final String KEY_FULL_NAME = "full_name";
     private static final String KEY_USERNAME = "username";
     private static final String KEY_PASSWORD = "password";
     private static final String KEY_EMPTY = "";
     private EditText etUsername;
     private EditText etPassword;
     private EditText etConfirmPassword;
-    private EditText etFullName;
     private String username;
     private String password;
     private String confirmPassword;
-    private String fullName;
     private ProgressDialog pDialog;
-    private String register_url = "https://finaltest001.000webhostapp.com/api/register.php";
     private SessionHandler session;
 
     @Override
@@ -46,7 +42,6 @@ public class RegisterActivity extends AppCompatActivity {
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
         etConfirmPassword = findViewById(R.id.etConfirmPassword);
-        etFullName = findViewById(R.id.etFullName);
 
         Button login = findViewById(R.id.btnRegisterLogin);
         Button register = findViewById(R.id.btnRegister);
@@ -68,7 +63,6 @@ public class RegisterActivity extends AppCompatActivity {
                 username = etUsername.getText().toString().toLowerCase().trim();
                 password = etPassword.getText().toString().trim();
                 confirmPassword = etConfirmPassword.getText().toString().trim();
-                fullName = etFullName.getText().toString().trim();
                 if (validateInputs()) {
                     registerUser();
                 }
@@ -107,13 +101,12 @@ public class RegisterActivity extends AppCompatActivity {
             //Populate the request parameters
             request.put(KEY_USERNAME, username);
             request.put(KEY_PASSWORD, password);
-            request.put(KEY_FULL_NAME, fullName);
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
         JsonObjectRequest jsArrayRequest = new JsonObjectRequest
-                (Request.Method.POST, register_url, request, new Response.Listener<JSONObject>() {
+                (Request.Method.POST, URLs.URL_REGISTER, request, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         pDialog.dismiss();
@@ -121,7 +114,7 @@ public class RegisterActivity extends AppCompatActivity {
                             //Check if user got registered successfully
                             if (response.getInt(KEY_STATUS) == 0) {
                                 //Set the user session
-                                session.loginUser(username,fullName);
+                                session.loginUser(username);
                                 loadDashboard();
 
                             }else if(response.getInt(KEY_STATUS) == 1){
@@ -160,12 +153,6 @@ public class RegisterActivity extends AppCompatActivity {
      * @return
      */
     private boolean validateInputs() {
-        if (KEY_EMPTY.equals(fullName)) {
-            etFullName.setError("Full Name cannot be empty");
-            etFullName.requestFocus();
-            return false;
-
-        }
         if (KEY_EMPTY.equals(username)) {
             etUsername.setError("Username cannot be empty");
             etUsername.requestFocus();

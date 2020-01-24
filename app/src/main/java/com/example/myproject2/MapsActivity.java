@@ -2,6 +2,7 @@ package com.example.myproject2;
 
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -16,6 +17,9 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -27,19 +31,33 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
-    Location currentLocation;
-    FusedLocationProviderClient fusedLocationProviderClient;
+    private static final String KEY_STATUS = "status";
+    private static final String KEY_USER = "username";
+    private static final double KEY_LATITUDE = 0.00;
+    private static final double KEY_LONGTIUDE = 0.00;
+    private static final String KEY_DETAIL = "detail";
+
+    private SessionHandler session;
     private static final int REQUEST_CODE = 101;
     private double Latitude = 0.00;
     private double Longitude = 0.00;
 
+    private String username;
+    private String detail;
+    private String userid;
+
+    Location currentLocation;
+    FusedLocationProviderClient fusedLocationProviderClient;
+
     TextView tvAddress;
-    TextView tvAddress2;
+    TextView tvUsername;
 
 
     @Override
@@ -49,7 +67,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         fetchLocation();
 
+        session = new SessionHandler(getApplicationContext());
+        final User user = session.getUserDetails();
+
         tvAddress = (TextView) findViewById(R.id.tvAddress);
+        tvUsername = (TextView) findViewById(R.id.tvUser);
+
+        tvUsername.setText(user.getUsername());
 
         //ปุ่มยกเลิก
         Button buttoncancel = findViewById(R.id.butCancel);
@@ -61,19 +85,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 finish();
             }
         });
-
-        //ปุ่มบันทึกที่อยู่
-        Button butSaveAddress = findViewById(R.id.butSaveAddress);
-        butSaveAddress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MapsActivity.this, DashboardActivity.class);
-                startActivity(i);
-                finish();
-            }
-        });
-
-    }
+}
     //เช็คสิทธิ์การเข้าถึงว่ามีการขอหรือยัง
     private void fetchLocation() {
         if (ActivityCompat.checkSelfPermission(

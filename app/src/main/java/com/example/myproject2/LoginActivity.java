@@ -21,7 +21,6 @@ import org.json.JSONObject;
 public class LoginActivity extends AppCompatActivity {
     private static final String KEY_STATUS = "status";
     private static final String KEY_MESSAGE = "message";
-    private static final String KEY_FULL_NAME = "full_name";
     private static final String KEY_USERNAME = "username";
     private static final String KEY_PASSWORD = "password";
     private static final String KEY_EMPTY = "";
@@ -30,7 +29,6 @@ public class LoginActivity extends AppCompatActivity {
     private String username;
     private String password;
     private ProgressDialog pDialog;
-    private String login_url = "https://finaltest001.000webhostapp.com/api/login.php";
     private SessionHandler session;
 
     @Override
@@ -107,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         JsonObjectRequest jsArrayRequest = new JsonObjectRequest
-                (Request.Method.POST, login_url, request, new Response.Listener<JSONObject>() {
+                (Request.Method.POST, URLs.URL_LOGIN, request, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         pDialog.dismiss();
@@ -115,7 +113,7 @@ public class LoginActivity extends AppCompatActivity {
                             //Check if user got logged in successfully
 
                             if (response.getInt(KEY_STATUS) == 0) {
-                                session.loginUser(username,response.getString(KEY_FULL_NAME));
+                                session.loginUser(username);
                                 loadDashboard();
 
                             }else{
