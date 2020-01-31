@@ -17,7 +17,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class InsertAddressActivity extends AppCompatActivity {
+public class InsertProfileActivity extends AppCompatActivity {
     private static final String KEY_USERID = "username";
     private static final String KEY_STATUS = "status";
     private static final String KEY_MESSAGE = "message";
@@ -33,7 +33,7 @@ public class InsertAddressActivity extends AppCompatActivity {
     private String age;
     private String userid;
     private ProgressDialog pDialog;
-    private String insertadd_url = "https://finaltest001.000webhostapp.com/api/insertaddress.php";
+    private String insertadd_url = "https://finaltest001.000webhostapp.com/api/Insertprofile.php";
     private SessionHandler session;
 
     @Override
@@ -41,7 +41,7 @@ public class InsertAddressActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         session = new SessionHandler(getApplicationContext());
         final User user = session.getUserDetails();
-        setContentView(R.layout.activity_insert_address);
+        setContentView(R.layout.activity_insert_profile);
 
         etName = findViewById(R.id.etName);
         etLast = findViewById(R.id.etLast);
@@ -103,7 +103,7 @@ public class InsertAddressActivity extends AppCompatActivity {
     }
 
     private void displayLoader() {
-        pDialog = new ProgressDialog(InsertAddressActivity.this);
+        pDialog = new ProgressDialog(InsertProfileActivity.this);
         pDialog.setMessage("กำลังบันทึก");
         pDialog.setIndeterminate(false);
         pDialog.setCancelable(false);

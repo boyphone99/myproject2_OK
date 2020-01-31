@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -19,6 +20,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -31,6 +33,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
+
+
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -43,11 +48,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private static final double KEY_LATITUDE = 0.00;
     private static final double KEY_LONGTIUDE = 0.00;
     private static final String KEY_DETAIL = "detail";
+    private static final String KEY_MESSAGE = "message";
 
     private SessionHandler session;
     private static final int REQUEST_CODE = 101;
     private double Latitude = 0.00;
     private double Longitude = 0.00;
+
+    private ProgressDialog pDialog;
+
 
     private String username;
     private String detail;
@@ -85,7 +94,87 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 finish();
             }
         });
+
+        //ปุ่มบันทึกที่อยู่
+        Button buttonsave = findViewById(R.id.butSaveAddress);
+        buttonsave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                username    = user.getUsername();
+                Latitude    = currentLocation.getLatitude();
+                Longitude   = currentLocation.getLongitude();
+                detail      = getAddress(Latitude, Longitude);
+                seveaddress();
+            }
+        });
 }
+
+    private void seveaddress() {
+        displayLoader();
+        JSONObject request = new JSONObject();
+        try {
+            //Populate the request parameters
+            request.put(KEY_USER, username);
+            request.put(KEY_DETAIL, detail);
+            request.put(String.valueOf(KEY_LATITUDE), Latitude);
+            request.put(String.valueOf(KEY_LONGTIUDE), Longitude);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest jsArrayRequest = new JsonObjectRequest
+                (Request.Method.POST, URLs.URL_SAVEADDRESS, request, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        pDialog.dismiss();
+                        try {
+                            //Check if user got registered successfully
+                            if (response.getInt(KEY_STATUS) == 0) {
+                                //Set the user session
+                                session.loginUser(username);
+                                loadDashboard();
+
+                            }else if(response.getInt(KEY_STATUS) == 1){
+                                Toast.makeText(getApplicationContext(),
+                                        response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        pDialog.dismiss();
+
+                        //Display error message whenever an error occurs
+                        Toast.makeText(getApplicationContext(),
+                                error.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+        // Access the RequestQueue through your singleton class.
+        MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest);
+    }
+
+    private void displayLoader() {
+        ProgressDialog pDialog = new ProgressDialog(MapsActivity.this);
+        pDialog.setMessage("Signing Up.. Please wait...");
+        pDialog.setIndeterminate(false);
+        pDialog.setCancelable(false);
+        pDialog.show();
+    }
+
+    private void loadDashboard() {
+        Intent i = new Intent(getApplicationContext(), addressActivity.class);
+        startActivity(i);
+        finish();
+
+    }
+
+
     //เช็คสิทธิ์การเข้าถึงว่ามีการขอหรือยัง
     private void fetchLocation() {
         if (ActivityCompat.checkSelfPermission(

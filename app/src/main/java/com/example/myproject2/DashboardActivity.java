@@ -49,7 +49,7 @@ public class DashboardActivity extends AppCompatActivity {
         insertBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(DashboardActivity.this, InsertAddressActivity.class);
+                Intent i = new Intent(DashboardActivity.this, InsertProfileActivity.class);
                 startActivity(i);
                 finish();
             }

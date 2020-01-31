@@ -11,5 +11,6 @@ public class URLs<https> {
             public static final String URL_SAVEADDRESS = ROOT_URL + "api/saveaddress.php";
             public static final String URL_UPLOADIMG = ROOT_URL + "api/uploadimage.php";
             public static final String URL_QUERYPRODUCT = ROOT_URL + "api/queryproduct.php";
+            public static final String URL_QUERYPROFILE = ROOT_URL + "api/queryprofile.php";
 
 }

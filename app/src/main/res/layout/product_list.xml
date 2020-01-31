@@ -20,8 +20,8 @@
 
             <ImageView
                 android:id="@+id/productImg"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:padding="4dp" />
 
             <TextView
@@ -54,7 +54,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@id/productImg"
                 android:text="15.00"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textSize="@dimen/textSize"
                 android:textStyle="bold" />
 
             <TextView
@@ -68,7 +68,7 @@
                 android:layout_toEndOf="@+id/textView2"
                 android:layout_toRightOf="@id/productImg"
                 android:text="-"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textSize="@dimen/textSize"
                 android:textStyle="bold" />
 
             <TextView
@@ -82,7 +82,7 @@
                 android:layout_toEndOf="@+id/tvtext"
                 android:layout_toRightOf="@id/productImg"
                 android:text="20.00"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textSize="@dimen/textSize"
                 android:textStyle="bold" />
 
             <TextView
@@ -94,7 +94,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_toEndOf="@+id/tvPriceHigh"
                 android:text="บาท"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textSize="@dimen/textSize"
                 android:textStyle="bold"/>
 
             <TextView
@@ -106,7 +106,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_toEndOf="@+id/tvPriceLow"
                 android:text="บาท"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textSize="@dimen/textSize"
                 android:textStyle="bold"/>
 
         </RelativeLayout>
