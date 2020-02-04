@@ -1,4 +1,4 @@
-package com.example.myproject2;
+package com.example.myproject2.Home;
 
 import android.os.Bundle;
 
@@ -11,6 +11,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.myproject2.R;
+import com.example.myproject2.Service.URLs;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -63,16 +65,9 @@ public class HomeActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         try {
-                            //converting the string to json array object
                             JSONArray array = new JSONArray(response);
-
-                            //traversing through all the object
                             for (int i = 0; i < array.length(); i++) {
-
-                                //getting product object from json array
                                 JSONObject product = array.getJSONObject(i);
-
-                                //adding the product to product list
                                 productList.add(new Product(
                                         product.getInt("product_id"),
                                         product.getString("product_name"),
@@ -83,7 +78,6 @@ public class HomeActivity extends AppCompatActivity {
                                 ));
                             }
 
-                            //creating adapter object and setting it to recyclerview
                             ProductsAdapter adapter = new ProductsAdapter(HomeActivity.this, productList);
                             recyclerView.setAdapter(adapter);
                         } catch (JSONException e) {

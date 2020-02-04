@@ -1,4 +1,4 @@
-package com.example.myproject2;
+package com.example.myproject2.Service;
 
 public class URLs<https> {
 

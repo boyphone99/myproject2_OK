@@ -1,9 +1,9 @@
-package com.example.myproject2;
+package com.example.myproject2.Session;
 
 import java.util.Date;
 
 public class User {
-    String username;
+    public String username;
     Date sessionExpiryDate;
 
     public void setUsername(String username) {

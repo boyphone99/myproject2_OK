@@ -1,4 +1,4 @@
-package com.example.myproject2;
+package com.example.myproject2.Home;
 
 /**
  * Created by Belal on 10/18/2017.

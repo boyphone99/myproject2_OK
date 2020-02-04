@@ -1,6 +1,7 @@
-package com.example.myproject2;
+package com.example.myproject2.Profile;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +14,10 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.myproject2.Service.MySingleton;
+import com.example.myproject2.R;
+import com.example.myproject2.Session.SessionHandler;
+import com.example.myproject2.Session.User;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -83,6 +88,7 @@ public class InsertProfileActivity extends AppCompatActivity {
                         try {
                             if (response.getInt(KEY_STATUS) == 0) {
                                 Toast.makeText(getApplicationContext(), response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
+                                loadprofile();
                             } else {
                                 Toast.makeText(getApplicationContext(), response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
                             }
@@ -100,6 +106,12 @@ public class InsertProfileActivity extends AppCompatActivity {
                     }
                 });
         MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest);
+    }
+
+    private void loadprofile() {
+        Intent i = new Intent(getApplicationContext(), ProfileActivity.class);
+        startActivity(i);
+        finish();
     }
 
     private void displayLoader() {

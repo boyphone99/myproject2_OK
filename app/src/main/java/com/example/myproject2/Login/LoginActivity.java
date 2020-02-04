@@ -1,4 +1,4 @@
-package com.example.myproject2;
+package com.example.myproject2.Login;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -14,6 +14,12 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.myproject2.DashboardActivity;
+import com.example.myproject2.Service.MySingleton;
+import com.example.myproject2.R;
+import com.example.myproject2.Register.RegisterActivity;
+import com.example.myproject2.Session.SessionHandler;
+import com.example.myproject2.Service.URLs;
 
 import org.json.JSONException;
 import org.json.JSONObject;

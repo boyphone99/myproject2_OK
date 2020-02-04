@@ -1,8 +1,10 @@
-package com.example.myproject2;
+package com.example.myproject2.Address;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.myproject2.R;
 
 public class addressActivity extends AppCompatActivity {
 

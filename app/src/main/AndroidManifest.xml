@@ -18,13 +18,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ProfileActivity"></activity>
-        <activity android:name=".addressActivity" />
+        <activity android:name=".Profile.ProfileActivity"></activity>
+        <activity android:name=".Address.addressActivity" />
         <activity android:name=".DashboardActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".InsertProfileActivity" />
-        <activity android:name=".MapsActivity" />
-        <activity android:name=".HomeActivity" />
+        <activity android:name=".Register.RegisterActivity" />
+        <activity android:name=".Profile.InsertProfileActivity" />
+        <activity android:name=".Address.MapsActivity" />
+        <activity android:name=".Home.HomeActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -38,7 +38,7 @@
             android:value="AIzaSyC-HGLtAxmzV2fyDQdTZxEkGKQI2ctLAVA" />
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".Login.LoginActivity"
             android:label="">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

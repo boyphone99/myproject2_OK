@@ -8,6 +8,13 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myproject2.Address.MapsActivity;
+import com.example.myproject2.Home.HomeActivity;
+import com.example.myproject2.Profile.InsertProfileActivity;
+import com.example.myproject2.Profile.ProfileActivity;
+import com.example.myproject2.Session.SessionHandler;
+import com.example.myproject2.Session.User;
+
 public class DashboardActivity extends AppCompatActivity {
     private SessionHandler session;
 

@@ -1,4 +1,4 @@
-package com.example.myproject2;
+package com.example.myproject2.Address;
 
 
 import android.Manifest;
@@ -22,6 +22,12 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.myproject2.DashboardActivity;
+import com.example.myproject2.Service.MySingleton;
+import com.example.myproject2.R;
+import com.example.myproject2.Session.SessionHandler;
+import com.example.myproject2.Session.User;
+import com.example.myproject2.Service.URLs;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;

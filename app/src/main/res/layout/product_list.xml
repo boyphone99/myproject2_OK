@@ -65,7 +65,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
-                android:layout_toEndOf="@+id/textView2"
+                android:layout_toEndOf="@+id/tvlast"
                 android:layout_toRightOf="@id/productImg"
                 android:text="-"
                 android:textSize="@dimen/textSize"
@@ -98,7 +98,7 @@
                 android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/tvlast"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvUnit"
